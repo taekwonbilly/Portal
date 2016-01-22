@@ -1,0 +1,44 @@
+#AMAZING SUPER EPIC FINALE!!!
+#Floor and Ceiling
+{ Piece 50.0 250.0 { Vector3 0.0 0.0 -125.0 } Floor }
+{ Killer 50.0 250.0 { Vector3 0.0 200.0 -125.0 } Floor }
+#Sides
+{ Piece 50.0 200.0 { Vector3 0.0 100.0 1.0 } Forward }
+{ Killer 250.0 200.0 { Vector3 -25.0 100.0 -125.0 } Right }
+{ Killer 250.0 200.0 { Vector3 25.0 100.0 -125.0 } Right }
+{ Killer 50.0 165.0 { Vector3 0.0 117.5 0.9 } Forward }
+#Killer lava from both sides!! Hurry!!! ~ and an obstructing wall (get over it)
+{ Platform { PKiller 50.0 30.0 { Vector3 0.0 0.0 0.0 } Floor } 2 { Vector3 -50.0 1.0 -10.0 } { Vector3 -25.0 1.0 -10.0 } .013 }
+{ Platform { PKiller 50.0 30.0 { Vector3 0.0 0.0 0.0 } Floor } 2 { Vector3 50.0 1.0 -10.0 } { Vector3 25.0 1.0 -10.0 } .013 }
+{ Piece 50.0 20.0 { Vector3 0.0 10.0 -25.0 } Forward }
+#Land on elevator on the other side with Helper Piece above
+{ Platform { Killer 50.0 30.0 { Vector3 0.0 0.0 0.0 } Floor } 2 { Vector3 0.0 0.0 -40.0 } { Vector3 -0.0 25.0 -40.0 } .05 }
+{ Piece 50.0 150.0 { Vector3 0.0 125.0 -40.0 } Forward }
+{ Killer 50.0 151.0 { Vector3 0.0 125.0 -39.0 } Forward }
+{ Killer 50.0 140.0 { Vector3 0.0 130.0 -41.0 } Forward }
+#2nd obstruction wall
+{ Piece 50.0 20.0 { Vector3 0.0 10.0 -90.0 } Forward }
+#Bouncy floor
+{ Bounce 50.0 30.0 { Vector3 0.0 0.1 -60.0 } Floor }
+#-250 becomes the new 0 z-coordinate
+#Huge Lava ditch
+{ PKiller 200.0 400.0 { Vector3 0.0 -50.0 -450 } Floor }
+{ Killer 200.0 400.0 { Vector3 0.0 200.0 -450 } Floor }
+{ Killer 200.0 50.0 { Vector3 0.0 -25.0 -250 } Forward }
+{ Killer 75.0 200.0 { Vector3 -62.5 100.0 -250 } Forward }
+{ Killer 75.0 200.0 { Vector3 62.5 100.0 -250 } Forward }
+{ Killer 400.0 250.0 { Vector3 100.0 75.0 -450 } Right }
+{ Killer 400.0 250.0 { Vector3 -100.0 75.0 -450 } Right }
+{ Killer 200.0 250.0 { Vector3 0.0 75.0 -650 } Forward }
+#The final platform and EXIT
+{ Killer 50.0 50.0 { Vector3 0.0 0.0 -625.0 } Floor }
+{ Exit 10.0 20.0 { Vector3 0.0 10.0 -649.0 } Forward }
+#Chain of Faith Plates ~ Choose the correct one (chain 2)
+#Chain #1
+{ FaithPlate 5 10 { Vector3 0.0 0.1 -240 } { Vector3 0 4 -5 } Floor }
+{ FaithPlate 20 40 { Vector3 0 -5.0 -570 } { Vector3 0 3 2 } Floor }
+#Chain #2 <-- the answer
+{ FaithPlate 5 10 { Vector3 20.0 0.1 -240 } { Vector3 -0.3 2 -3 } Floor }
+#Chain #3
+{ FaithPlate 5 10 { Vector3 -20.0 0.1 -240 } { Vector3 0.4 1 -2 } Floor }
+{ FaithPlate 20 40 { Vector3 15.0 -5.0 -380 } { Vector3 -0.4 3 2 } Floor }

@@ -1,0 +1,6 @@
+{ Win 100.0 100.0 { Vector3 0.0 0.0 0.0 } Floor }
+{ Win 100.0 100.0 { Vector3 0.0 100.0 0.0 } Floor }
+{ Win 100.0 100.0 { Vector3 0.0 50.0 -50.0 } Forward }
+{ Win 100.0 100.0 { Vector3 0.0 50.0 50.0 } Forward }
+{ Win 100.0 100.0 { Vector3 50.0 50.0 0.0 } Right }
+{ Win 100.0 100.0 { Vector3 -50.0 50.0 0.0 } Right }

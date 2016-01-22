@@ -1,0 +1,28 @@
+{ Piece 100 100 { Vector3 0 0 0 } Floor }
+{ Killer 100 100 { Vector3 0 -50 -50 } Forward }
+{ PKiller 100 100 { Vector3 0 -50 -100 } Floor }
+{ Killer 100 100 { Vector3 0 -50 -150 } Forward }
+{ Bounce 100 200 { Vector3 0 100 -150 } Forward }
+
+{ Killer 50 100 { Vector3 25 100 0 } Floor }
+{ Killer 100 300 { Vector3 0 50 50 } Forward }
+
+{ FaithPlate 5 20 { Vector3 25 .01 -30 } { Vector3 0 2.5 -2.5 } Floor }
+
+{ Piece 200 300 { Vector3 -50 50 -50 } Right }
+{ Killer 200 200 { Vector3 50 0 -50 } Right }
+
+{ Killer 100 200 { Vector3 0 200 -50 } Floor }
+
+{ Killer 100 100 { Vector3 50 150 -100 } Right }
+
+{ PKiller 100 100 { Vector3 100 0 0 } Floor }
+{ Killer 100 100 { Vector3 200 0 0 } Floor }
+{ Killer 100 300 { Vector3 250 50 0 } Right }
+{ Exit 10 20 { Vector3 249.9 10 0 } Right }
+
+{ Killer 200 300 { Vector3 150 50 -50 } Forward }
+{ Killer 200 300 { Vector3 150 50 50 } Forward }
+
+{ Killer 200 100 { Vector3 150 200 0 } Floor }
+

@@ -1,0 +1,35 @@
+This game aims to mimic the bestselling games Portal/Portal 2 by valve (from which we currently borrow many sound files)
+The premise of the game is the portal gun, a device which allows the user to enter one portal, and exit the other
+This game includes elements such as conservation of momentum through portals, and conservation of angles of entry through portals, thus allowing "momentum puzzles".
+
+The game is controlled by both the mouse and the keyboard.
+For key controls, press w/up to move forward, s/down to move back, a to move left, d to move right, right arrow key to turn right, and left arrow key to turn left.
+Other keys include p to take a screenshot, q to respawn, r to shoot a blue portal, t to shoot an orange portal, space to jump, and esc to go back/exit.
+The game also incorporates non-standard FPS mouse controls. The reason these are nonstandard are because the goal of this is to eventually be turned into an android game,
+so the controls are similar to what is planned to be developed for android.
+These controls are as follows: to look up, place your cursor in the upper 1/8 of the screen, to look down, place your cursor in the lower 1/8 of the screen, to look left, place your cursor on the left 1/8 of the screen, and to look right, place your cursor on the irhgt 1/8 of the screen.
+Additionally, one may press the left mouse button to shoot a blue portal, and the right mouse button to shoot an orange portal.
+
+In order to be transferable to the android platform at a later date, the game uses a modified version the Ardor3D OpenGL wrapper.
+
+The goal of the game is to solve the puzzle by colliding with the exit surface, allowing you to move to the next level.
+
+This game incorporates several additional elements.
+These include:
+Portalable surfaces (blue/green surfaces with the 70Three laboratories logo, which one can create portals on).
+Nonportalable surfaces (white-ish surfaces which you cannot shoot portals on)
+Bounce surfaces/repulsion gel (blue surfaces which will bounce you off them upon collision)
+PKiller surfaces (fire-y surfaces which will kill the user on impact)
+Aerial Faith plates (gray-ish surfaces which will launch the user on impact)
+Platforms (surfaces that may move and take you with them) 
+
+Known bugs include camera frustam math errors among other things cited in the source code.
+Additionally, if you go through too many levels in one run, the number of items that exist/existed may cause the program to crash so you may need to quit and restart from that level. 
+
+Finally here is a very modest commercial for the game, for which both "Joey" and "Jeremy" are cited in the credits.
+http://www.youtube.com/watch?v=noRiz3V-qMo
+
+Have fun, and think with portals!
+
+To run, simply click on the jar file, or enter command line, navigate to the jar's directory and type java -jar Portal.jar
+HOWEVER, please ensure that the jar folder is beside it's requisite .dlls before running.

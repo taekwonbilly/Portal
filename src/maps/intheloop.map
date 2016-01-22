@@ -1,0 +1,16 @@
+#Easy Level-- Keep cool while in the loop :)
+#Floor and Ceiling
+{ Piece 100.0 100.0 { Vector3 0.0 0.0 -50.0 } Floor }
+{ Killer 100.0 100.0 { Vector3 0.0 100.0 -50.0 } Floor }
+#Sides
+{ Killer 100.0 100.0 { Vector3 50.0 50.0 -50.0 } Right }
+{ Killer 100.0 100.0 { Vector3 -50.0 50.0 -50.0 } Right }
+{ Killer 100.0 100.0 { Vector3 0.0 50.0 1.0 } Forward }
+{ Killer 100.0 100.0 { Vector3 0.0 50.0 -100.0 } Forward }
+#Elevation Block
+{ Killer 100.0 50.0 { Vector3 0.0 25.0 -50.0 } Forward }
+{ Killer 100.0 50.0 { Vector3 0.0 50.0 -75.0 } Floor }
+#Help Piece
+{ Piece 100.0 25.0 { Vector3 0.0 95.0 -20 } Floor }
+#Exit
+{ Exit 10.0 20.0 { Vector3 0.0 60.0 -98 } Forward }

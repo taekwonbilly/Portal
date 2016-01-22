@@ -1,0 +1,36 @@
+#{ Platform { Piece 50 50 { Vector3 0 0 0 } Floor } 4 { Vector3 0 0 0 } { Vector3 0 100 0 } { Vector3 0 100 100 } { Vector3 0 0 100 } .05 false }
+#{ PKiller 1000 1000 { Vector3 0 -40 0 } Floor }
+#Bottom and top
+{ PKiller 200.0 75.0 { Vector3 0.0 -150.0 -312.5 } Floor }
+{ Piece 200.0 75.0 { Vector3 0.0 -150.0 -237.5 } Floor }
+{ PKiller 200.0 150.0 { Vector3 0.0 -150.0 -125.0 } Floor }
+{ PKiller 200.0 200.0 { Vector3 0.0 150.0 -100.0 } Floor }
+{ PKiller 200.0 100.0 { Vector3 0.0 150.0 -250.0 } Floor }
+{ Piece 200.0 100.0 { Vector3 0.0 150.0 -350.0 } Floor }
+#Makes killer on opposite side ceiling
+{ Killer 200.0 200.0 { Vector3 0.0 149.0 -300.0 } Floor }
+#End Platforms
+{ Killer 200.0 50.0 { Vector3 0.0 0.0 -25.0 } Floor }
+{ Killer 200.0 50.0 { Vector3 0.0 0.0 -375.0 } Floor }
+{ PKiller 200.0 150.0 { Vector3 0.0 -75.0 -50.0 } Forward }
+{ PKiller 200.0 150.0 { Vector3 0.0 -75.0 -350.0 } Forward }
+#Sides
+{ Piece 400.0 150.0 { Vector3 100.0 75.0 -200.0 } Right }
+{ PKiller 400.0 150.0 { Vector3 100.0 -75.0 -200.0 } Right }
+{ Piece 400.0 150.0 { Vector3 -100.0 75.0 -200.0 } Right }
+{ PKiller 400.0 150.0 { Vector3 -100.0 -75.0 -200.0 } Right }
+#Killers on far sides
+{ Killer 100.0 300.0 { Vector3 99.0 0.0 -350.0 } Right }
+{ Killer 100.0 300.0 { Vector3 -99.0 0.0 -350.0 } Right }
+#Front and Back
+{ Killer 200.0 300.0 { Vector3 0.0 0.0 -400.0 } Forward }
+{ Piece 200.0 300.0 { Vector3 0.0 0.0 1 } Forward }
+#Platform 1
+{ Piece 50.0 50.0 { Vector3 75.0 0.0 -200.0 } Floor }
+#Platform 2
+{ Piece 50.0 50.0 { Vector3 -75.0 0.0 -285.0 } Floor }
+#Wall next to Platform 2
+{ Piece 50.0 50.0 { Vector3 -75.0 25.0 -260.0 } Forward }
+{ Killer 50.0 145.0 { Vector3 -99.0 77.5 -285.0 } Right }
+#Exit
+{ Exit 10.0 30.0 { Vector3 0.0 15.0 -399.0 } Forward }

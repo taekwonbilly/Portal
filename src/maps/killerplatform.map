@@ -1,0 +1,35 @@
+#Floor and Ceiling
+{ Piece 30.0 300.0 { Vector3 0.0 0.0 -150.0 } Floor }
+{ Killer 30.0 190.0 { Vector3 0.0 100.0 -95.0 } Floor }
+{ Piece 30.0 110.0 { Vector3 0.0 100.0 -245.0 } Floor }
+#Sides
+{ Killer 300.0 100.0 { Vector3 15.0 50.0 -150.0 } Right }
+{ Killer 300.0 100.0 { Vector3 -15.0 50.0 -150.0 } Right }
+{ Killer 30.0 100.0 { Vector3 0.0 50.0 1.0 } Forward }
+{ Piece 30.0 100.0 { Vector3 0.0 50.0 -300.0 } Forward }
+#Killer Platform!!! Think fast!!!
+{ Platform { PKiller 30.0 30.0 { Vector3 0 0 0 } Floor } 2 { Vector3 0 50 -15 } { Vector3 0 0 -15 } .03 }
+#Saving wall structure
+{ Piece 30.0 10.0 { Vector3 0.0 5.0 -30.0 } Forward }
+{ Piece 30.0 30.0 { Vector3 0.0 10.0 -45.0 } Floor }
+{ Piece 30.0 20.0 { Vector3 0.0 20.0 -60.0 } Forward }
+{ Piece 30.0 90.0 { Vector3 0.0 30.0 -105.0 } Floor }
+#Hanging wall
+{ Killer 30.0 50.0 { Vector3 0.0 75.0 -30.0 } Forward }
+{ Piece 30.0 20.0 { Vector3 0.0 40.0 -30.0 } Forward }
+#Second Killer Platform!
+{ Platform { PKiller 30.0 10.0 { Vector3 0 0 0 } Floor } 2 { Vector3 0 40 -85 } { Vector3 0 30 -85 } .4 false }
+#Drop off wall
+{ Piece 30.0 30.0 { Vector3 0.0 15.0 -150.0 } Forward }
+#Wall + Hole + Killer Floor
+{ PKiller 30.0 40.0 { Vector3 0.0 1.0 -170.0 } Floor }
+{ Killer 30.0 5.0 { Vector3 0.0 97.5 -190.0 } Forward }
+#		Sub right and left
+{ Killer 12.0 5.0 { Vector3 9.0 92.5 -190.0 } Forward }
+{ Killer 12.0 5.0 { Vector3 -9.0 92.5 -190.0 } Forward }
+#Bottom
+{ Killer 30.0 90.0 { Vector3 0.0 45 -190.0 } Forward }
+#Cover
+{ Killer 30.0 40.0 { Vector3 0.0 80 -140.0 } Forward }
+#Exit
+{ Exit 10 30 { Vector3 0 15 -299 } Forward }

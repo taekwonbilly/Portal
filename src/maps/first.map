@@ -1,0 +1,25 @@
+#Bottom box
+{ Piece 200 100 { Vector3 0 0 0 } Floor }
+
+{ Killer 100 100 { Vector3 100 50 0 } Right }
+{ Killer 100 100 { Vector3 -100 50 0 } Right }
+{ PKiller 200 100 { Vector3 0 50 -50 } Forward }
+{ Killer 200 100 { Vector3 0 50 50 } Forward }
+
+#ceiling
+{ Killer 200 100 { Vector3 0 200 -50 } Floor }
+{ Killer 200 100 { Vector3 0 200 50 } Floor }
+
+#other sides
+{ Killer 200 100 { Vector3 100 150 0 } Right }
+{ Killer 200 100 { Vector3 -100 150 0 } Right }
+{ Piece 200 100 { Vector3 0 150 -100 } Forward }
+{ Killer 200 100 { Vector3 0 150 100 } Forward }
+
+#other floor
+{ Bounce 190 50 { Vector3 -5 100 75 } Floor }
+{ Killer 10 50 { Vector3 95 100 75 } Floor }
+{ Killer 200 50 { Vector3 0 100 -75 } Floor }
+
+#exit
+{ Exit 10 30 { Vector3 0 115 99 } Forward }

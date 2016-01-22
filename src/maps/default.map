@@ -1,0 +1,21 @@
+{ Piece 200.0 200.0 { Vector3 0.0 100.0 -100.0 } Floor }
+{ Piece 200.0 200.0 { Vector3 0.0 -100.0 -100.0 } Floor }
+{ Piece 200.0 400.0 { Vector3 0.0 0.0 0.01 } Forward }
+{ Piece 200.0 400.0 { Vector3 0.0 0.0 -200.0 } Forward }
+{ Piece 200.0 400.0 { Vector3 100.0 0.0 -100.0 } Right }
+{ Piece 200.0 400.0 { Vector3 -100.0 0.0 -100.0 } Right }
+{ Piece 200.0 40.0 { Vector3 0.0 0.0 -20.0 } Floor }
+{ Piece 200.0 40.0 { Vector3 0.0 0.0 -180.0 } Floor }
+{ Piece 200.0 200.0 { Vector3 0.0 -100.0 -40.0 } Forward }
+{ Piece 200.0 200.0 { Vector3 0.0 -100.0 -160.0 } Forward }
+{ Exit 10 30 { Vector3 0.0 15.0 -199.0 } Forward }
+#{ TeaPot { Vector 0 20 0 } { Vector3 0.0 0.0 0.0 } { Vector3 0.0 0.0 0.0 } }
+#{ Piece 100.0 100.0 { Vector3 0.0 0.0 0.0 } Floor }
+#{ Piece 100.0 100.0 { Vector3 0.0 100.0 0.0 } Floor }
+#{ Killer 100.0 100.0 { Vector3 0.0 50.0 -50.0 } Forward }
+#{ Piece 100.0 100.0 { Vector3 0.0 50.0 50.0 } Forward }
+#{ Piece 100.0 100.0 { Vector3 50.0 50.0 0.0 } Right }
+#{ Piece 100.0 100.0 { Vector3 -50.0 50.0 0.0 } Right }
+## { Cube { Vector3 2.0 7.0 2.0 } { Vector3 0.0 0.0 -1.0 } { #Vector3 0.0 0.0 0.0 } 5.0 5.0 5.0 }
+#{ Exit 10 20 { Vector3 0 10 49 } Forward }
+#{ TeaPot { Vector3 0.0 7.0 0.0 } { Vector3 0.0 0.0 0.0 } { Vector3 0.0 0.0 0.0 } }

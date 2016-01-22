@@ -1,0 +1,35 @@
+#Floor and Ceiling
+{ Piece 30 30 { Vector3 0 0 -15 } Floor }
+{ FaithPlate 5 10 { Vector3 0 .1 -15 } { Vector3 -1 5 0 } Floor }
+#Sides
+{ Bounce 30 400 { Vector3 0 200 0.01 } Forward }
+{ Bounce 30 400 { Vector3 0 200 -30 } Forward }
+{ Bounce 30 400 { Vector3 -15 200 -15 } Right }
+{ Bounce 30 400 { Vector3 15 200 -15 } Right }
+#400 becomes the new 0 y-coordinate
+#Rectangles on the right and left
+{ Piece 400 400 { Vector3 215 400 -15 } Floor }
+{ PKiller 400 400 { Vector3 -215 400 -15 } Floor }
+{ Piece 30 185 { Vector3 0 400 -122.5 } Floor }
+{ Piece 30 185 { Vector3 0 400 92.5 } Floor }
+#Ceiling
+{ Killer 830 400 { Vector3 0 600 -15 } Floor }
+#Sides
+{ Killer 830 200 { Vector3 0 500 185 } Forward }
+{ Killer 830 200 { Vector3 0 500 -215 } Forward }
+{ Killer 400 200 { Vector3 415 500 -15 } Right }
+{ Killer 400 200 { Vector3 -415 500 -15 } Right }
+#Upstairs
+#Obscuring wall and obstacle wall
+{ Piece 400 40 { Vector3 45 420 -15 } Right }
+{ Piece 400 160 { Vector3 -15 480 -15 } Right }
+#Helping ceiling patch and Bouncing floor
+{ Piece 100 100 { Vector3 365 597 -145 } Floor }
+{ Bounce 100 200 { Vector3 365 401 -115 } Floor }
+#Opposite platforms
+{ Piece 100 100 { Vector3 365 565 -15 } Floor }
+{ Piece 100 100 { Vector3 -365 565 -15 } Floor }
+{ FaithPlate 5 10 { Vector3 365 565.1 0 } { Vector3 -15 0.9 0 } Floor }
+#Exit and portal piece
+#{ Piece 20 20 { Vector3 -400 580 -15 } Right }
+{ Exit 10 20 { Vector3 -414 575 -15 } Right }

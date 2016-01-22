@@ -1,0 +1,31 @@
+#tunnel part 1
+
+{ Killer 50 40 { Vector3 0 0 0 } Floor }
+
+{ Platform { Killer 20 20 { Vector3 0 0 0 } Floor } 2 { Vector3 0 0 -10 } { Vector3 0 0 -110 } .25 }
+
+{ Platform { Killer 20 20 { Vector3 0 0 0 } Floor } 2 { Vector3 80 5 -180 } { Vector3 80 5 -120 } .25 }
+
+
+#{ Piece 20 80 { Vector3 0 0 -60 } Floor }
+#{ Piece 80 20 { Vector3 30 0 -110 } Floor }
+#{ Piece 20 80 { Vector3 80 0 -140 } Floor }
+
+{ Piece 100 30 { Vector3 -10 5 -70 } Right }
+{ Piece 80 30 { Vector3 10 5 -60 } Right }
+
+{ Piece 80 30 { Vector3 30 5 -120 } Forward }
+{ Piece 80 30 { Vector3 50 5 -100 } Forward }
+
+{ Piece 60 30 { Vector3 70 5 -150 } Right }
+{ Piece 80 30 { Vector3 90 5 -140 } Right }
+
+{ Killer 20 80 { Vector3 0 20 -60 } Floor }
+{ Killer 80 20 { Vector3 30 20 -110 } Floor }
+{ Killer 20 80 { Vector3 80 20 -140 } Floor }
+
+{ PKiller 20 80 { Vector3 0 -10 -60 } Floor }
+{ PKiller 80 20 { Vector3 30 -10 -110 } Floor }
+{ PKiller 20 80 { Vector3 80 -10 -140 } Floor }
+
+{ Exit 20 30 { Vector3 80 5 -180 } Forward }

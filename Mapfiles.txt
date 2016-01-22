@@ -1,0 +1,62 @@
+For this game, the .map extension was created to create, export, and load maps.
+These .map files are in a format similar to lisp we called Constructor.
+In this language, starting a line with the '#' character represents a comment.
+Blank lines are not considered
+To add a spatial to the scene, you will need to enclose your data to create a class inside two space separated brackets '{' '}'
+The specification for creating a class is "{ CLASSNAME ARGUMENT1 ARGUMENT2 ... ARGUMENTN }"
+For instance, to create a vector you would type { Vector3 1 2 3 }
+
+Please also note that all items should be space separated and have no spaces after or before a line, or extra spaces between as this may cause unwanted behavior.
+Additionally, the all numbers will be attempted to be parsed at the lowest level (eg if it can be an int without error, it is and int, otherwise it's a double)
+
+To create a class, often one must nest classes inside one another, this is done by again enclosing the new nested class in brackets as well.
+For example, to create a Piece you would type { Piece 10 10 { Vector3 3 4 5 } Front }
+
+The following are primitives and do not need to be enclosed in brackets
+classnames
+integers
+doubles
+orientation
+booleans
+
+Please find below the documentation for creating some of the basic classes
+
+Orientation can also be constructed as a class
+{ Ori type }
+where type is an integer
+0 = floor
+1 = forward
+2 = right
+ex { Ori 0 }
+
+Vector3
+{ Vector3 x y z }
+where x y and z are the components of the vector
+ex { Vector3 1 2 4 }
+
+Surface (Piece/Bounce/Win/Exit/Killer/PKiller/FaithPlate)
+{ ClassName width height { Vector3 centerX centerY centerZ } orientation }
+where Classname is one of the classes above
+width is the width
+height is the height
+the nested vector is the center of the surface
+and orientation is the orientation
+ex: { Piece 200.0 200.0 { Vector3 0.0 100.0 -100.0 } Floor }
+
+Platform
+{ Platform { Surface ... } ArrayLength { Vector3 ... } ... { Vector3 ... } speed }
+This may need some more explaining, to create the platform, the second argument is the surface which the platform moves
+the second argument is the number of positions the platform moves between and the third to second to last arguments are the positions it moves bewteen (in order)
+please note that you MUST have as many vectors following the length as the length denotes.
+The final argument is the speed at which the platform moves
+ex: { Platform { Killer 20 20 { Vector3 0 0 0 } Floor } 2 { Vector3 80 5 -180 } { Vector3 80 5 -120 } .25 }
+
+Portal
+{ Portal { Vector3 ... } Orientation Boolean Boolean }
+The vector is the center, the orientation is the orientation, the first boolean is whether or not its negated, and the last boolean is the type of portal
+ex: { Portal { Vector3 0 0 10 } Floor true false }
+
+Bullet
+{ Bullet radius { Vector3 ... } { Vector3 ... } Boolean Boolean }
+The int/double radius is the sphere's readius the first vector is the center, the second vector is the motion, the first boolean is the type of portal, if applicable (blue/orange) and the second boolean if it creates a portal, if applicable
+ex: { Bullet 2 { Vector3 0 0 0 } { Vector3 0 0 -1 } true true }
