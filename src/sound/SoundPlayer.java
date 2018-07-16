@@ -1,6 +1,9 @@
-package sound; 
+package sound;
+
 import java.io.*;
 import java.net.*;
+
+import state.Menu;
 
 import javazoom.jl.decoder.JavaLayerException;
 
@@ -200,7 +203,7 @@ if(playing){
 		e.printStackTrace();
 	}
 	if(isComplete()){
-state.Menu.finished(self);
+Menu.finished(self);
 pos = 0;
 	}
 }
