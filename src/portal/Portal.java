@@ -21,40 +21,41 @@ import com.ardor3d.scenegraph.hint.LightCombineMode;
 import com.ardor3d.scenegraph.shape.Disk;
 import com.ardor3d.scenegraph.shape.Torus;
 
-import file.Savable;
 import surface.Orientation;
 import surface.Surface;
+import file.Writable;
+import file.WritableUtils;
 
 /**
  * The Portal class, by entering a portal, your velocity and angle of entry are conserved and you exit through the other portal, if it exists,
  * see attached text files for more info
  */
-public class Portal extends Node implements Savable {
+public class Portal extends Node implements Writable {
 	/** The orientation of the portal */
   public Orientation ori;
-    
+
     /** The position of the portal */
     public final Vector3 position;
-    
+
     /** The disk where the image of the other portal will be overlayed */
     public Disk disk;
-    
+
     /** The torus surrounding the disk */
     Torus tor;
-    
+
     /** The type of portal */
     public boolean type;
-    
+
     /**
      * Returns the .map representation of this
      */
     public String toWritableString(){
-    	return "{ Portal "+position.toWritableString()+Surface.toString(ori)+" "+negate+" "+type+" }";
+    	return "{ Portal "+WritableUtils.toWritableString(position)+Surface.toString(ori)+" "+negate+" "+type+" }";
     }
-    
+
     /**
 	 * Instantiates a new portal.
-	 * 
+	 *
 	 * @param pos
 	 *            the position
 	 * @param o
@@ -116,7 +117,7 @@ public class Portal extends Node implements Savable {
 
     /**
 	 * Renders the other portal on top of this
-	 * 
+	 *
 	 * @param renderer
 	 *            the renderer
 	 */
@@ -135,10 +136,10 @@ public class Portal extends Node implements Savable {
             disk.setRenderState(screen);
     }
 
-    
+
     /**
 	 * Instantiates a new portal.
-	 * 
+	 *
 	 * @param p
 	 *            the portalable hit
 	 * @param start
@@ -152,19 +153,19 @@ public class Portal extends Node implements Savable {
         disk.setRenderState((Imaging.orange));
         type = false;
     }
-    
+
     /**
 	 * Gets the orientation.
-	 * 
+	 *
 	 * @return the orientation
 	 */
     public Orientation getOrientation(){
     	return ori;
     }
-    
+
     /**
 	 * Gets the forward vector relative to this portal
-	 * 
+	 *
 	 * @return the forward vector
 	 */
     public Vector3 getForwardVector() {
@@ -192,7 +193,7 @@ public class Portal extends Node implements Savable {
     }
 
     /**
-	 * Gets the left vector relative to this portal 
+	 * Gets the left vector relative to this portal
 	 * @return the left vector
 	 */
     public Vector3 getLeftVector() {
@@ -221,7 +222,7 @@ public class Portal extends Node implements Savable {
 
     /**
 	 * Gets the up vector relative to this portal
-	 * 
+	 *
 	 * @return the up vector
 	 */
     public Vector3 getUpVector() {
@@ -250,13 +251,13 @@ public class Portal extends Node implements Savable {
 
     /** The boolean dictating whether or not the orientation is negated (front/back) */
     public boolean negate;
-    
+
     /** The count of times this portal rendered to avoid an infinite recusion */
     public int count = 0;
 
     /**
 	 * Takes a vector relative to this portal and decomposes it to a standard form
-	 * 
+	 *
 	 * @param inert
 	 *            the relative vector
 	 * @return the standard vector
@@ -297,16 +298,16 @@ public class Portal extends Node implements Savable {
 
     /** The texture renderer. */
     public TextureRenderer textureRenderer;
-    
+
     /** The texture showing the view from the other portal */
     public Texture2D fakeTex;
-    
+
     /** The boolean designating whether the texture renderer has inialized*/
     public boolean inited = false;
 
     /**
 	 * Instantiates a new portal.
-	 * 
+	 *
 	 * @param p
 	 *            the portalable reference
 	 * @param ray

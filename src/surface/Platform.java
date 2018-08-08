@@ -5,16 +5,18 @@ import backbone.Main;
 import com.ardor3d.math.Vector3;
 import com.ardor3d.scenegraph.Node;
 
+import file.Writable;
+
 /**
- * A class which will handle all movements of any surface. 
+ * A class which will handle all movements of any surface.
  */
-public class Platform extends Node implements file.Savable{
+public class Platform extends Node implements Writable{
 	/**
 	 * The surface to be moved
 	 */
 	public Surface self;
 	/**
-	 * 
+	 *
 	 * @param a The surface to be moved
 	 * @param ar An array of coordinated to move between
 	 * @param speed the speed for the surface to move between the coordinates
@@ -65,7 +67,7 @@ public class Platform extends Node implements file.Savable{
 				now.addLocal(move);
 				if(hit)
 				Main._controlHandle.move(Main._canvas.getCanvasRenderer().getCamera(), move, true);
-				
+
 				self.setTranslation(now);
 			}
 		}
@@ -74,7 +76,7 @@ public class Platform extends Node implements file.Savable{
 			now.addLocal(move);
 			if(hit)
 			Main._controlHandle.move(Main._canvas.getCanvasRenderer().getCamera(), move, true);
-			
+
 			self.setTranslation(now);
 		}
 	}

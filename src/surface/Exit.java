@@ -5,6 +5,8 @@ import com.ardor3d.math.type.ReadOnlyVector3;
 
 import backbone.Constants;
 import backbone.Imaging;
+import file.Writable;
+import file.WritableUtils;
 /**
  * A surface for which upon collision with will immediately complete the level.
  * There is only allowed to be one of these per level, since only the last created
@@ -13,7 +15,7 @@ import backbone.Imaging;
 public class Exit extends Surface{
    /**
 	 * Instantiates a new exit.
-	 * 
+	 *
 	 * @param w
 	 *            the width
 	 * @param h
@@ -32,6 +34,6 @@ public class Exit extends Surface{
      * Returns the writable string representation of this exit
 	 */
 	public String toWritableString() {
-		return "{ Exit "+width+" "+height+" "+getPosition().toWritableString()+" "+toString(getOrientation())+" }";
+		return "{ Exit "+width+" "+height+" "+WritableUtils.toWritableString(getPosition())+" "+toString(getOrientation())+" }";
 	}
 }

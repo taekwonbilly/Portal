@@ -4,6 +4,9 @@ package surface;
 import com.ardor3d.math.type.ReadOnlyVector3;
 
 import backbone.Imaging;
+
+import file.Writable;
+import file.WritableUtils;
 /**
  * A surface for which upon collision with (standing on top of) will immediately catapult the user in a specified direction
  */
@@ -14,7 +17,7 @@ public class FaithPlate extends Surface{
 	public ReadOnlyVector3 jump;
    /**
 	 * Instantiates a new faith plate
-	 * 
+	 *
 	 * @param w
 	 *            the width
 	 * @param h
@@ -33,7 +36,7 @@ public class FaithPlate extends Surface{
      * Returns the writable string representation of this faith plate
 	 */
 	public String toWritableString() {
-		return "{ FaithPlate "+width+" "+height+" "+getPosition().toWritableString()+" "+toString(getOrientation())+" }";
+		return "{ FaithPlate "+width+" "+height+" "+WritableUtils.toWritableString(getPosition())+" "+toString(getOrientation())+" }";
 	}
 }
 

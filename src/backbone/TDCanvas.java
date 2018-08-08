@@ -6,7 +6,7 @@ import state.Playing;
 
 import com.ardor3d.framework.Scene;
 import com.ardor3d.framework.Updater;
-import com.ardor3d.image.util.ScreenShotImageExporter;
+import com.ardor3d.image.util.awt.ScreenShotImageExporter;
 import com.ardor3d.intersection.PickResults;
 import com.ardor3d.intersection.PrimitivePickResults;
 import com.ardor3d.light.PointLight;

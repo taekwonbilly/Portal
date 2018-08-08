@@ -6,13 +6,17 @@ import portal.Portalable;
 import com.ardor3d.math.type.ReadOnlyVector3;
 
 import backbone.Imaging;
+
+import file.Writable;
+import file.WritableUtils;
+
 /**
  * The default surface that portals can be created onto
  */
 public class Piece extends Surface implements Portalable{
    /**
 	 * Instantiates a new piece.
-	 * 
+	 *
 	 * @param w
 	 *            the width
 	 * @param h
@@ -30,6 +34,6 @@ public class Piece extends Surface implements Portalable{
      * Returns the writable string representation of this piece
 	 */
 	public String toWritableString() {
-		return "{ Piece "+width+" "+height+" "+getPosition().toWritableString()+" "+toString(getOrientation())+" }";
+		return "{ Piece "+width+" "+height+" "+WritableUtils.toWritableString(getPosition())+" "+toString(getOrientation())+" }";
 	}
 }

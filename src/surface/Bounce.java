@@ -5,13 +5,17 @@ import com.ardor3d.math.Vector3;
 import com.ardor3d.math.type.ReadOnlyVector3;
 
 import backbone.Imaging;
+
+import file.Writable;
+import file.WritableUtils;
+
 /**
  * A surface for which upon collision with will immediately re-orient the intertial vector or cause it to "bounce off"
  */
 public class Bounce extends Surface{
    /**
 	 * Instantiates a new bounce.
-	 * 
+	 *
 	 * @param w
 	 *            the width
 	 * @param h
@@ -29,7 +33,7 @@ public class Bounce extends Surface{
      * Returns the writable string representation of this bounce
 	 */
 	public String toWritableString() {
-		return "{ Bounce "+width+" "+height+" "+getPosition().toWritableString()+" "+toString(getOrientation())+" }";
+		return "{ Bounce "+width+" "+height+" "+WritableUtils.toWritableString(getPosition())+" "+toString(getOrientation())+" }";
 	}
 	/**
 	 * Sets and reflects a vector about this bounce.

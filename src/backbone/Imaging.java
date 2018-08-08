@@ -9,7 +9,7 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 
 import com.ardor3d.image.Texture;
-import com.ardor3d.image.util.AWTImageLoader;
+import com.ardor3d.image.util.awt.AWTImageLoader;
 import com.ardor3d.renderer.state.TextureState;
 import com.ardor3d.util.TextureManager;
 import com.ardor3d.util.resource.ResourceLocatorTool;
@@ -23,7 +23,7 @@ public class Imaging {
 	 * The texturestate for the Bounce surface
 	 */
 	public static TextureState bounce;
-	
+
 	/** The texturestate for a piece */
 	public static TextureState background;
 
@@ -39,20 +39,20 @@ public class Imaging {
 	/** The texturestate for the exit surface */
 	public static TextureState exit;
 
-	/** The texturestate for the aerial faith plate surface */	
+	/** The texturestate for the aerial faith plate surface */
 	public static TextureState plate;
 
-	/** The texturestate for the winning surface */	
+	/** The texturestate for the winning surface */
 	public static TextureState winTS;
 
-	/** The texturestate for the pkiller surface */	
+	/** The texturestate for the pkiller surface */
 	public static TextureState lava;
 
 	/** A hashmap of textures for fast lookup */
 	static HashMap<String, Texture> textures = new HashMap<String, Texture>();
-	
+
 	//Menus
-	
+
 /** An array of images for the main menu, where each slot represents a selected index in the menu */
 public static BufferedImage[] menuItems = new BufferedImage[4];
 
@@ -64,7 +64,7 @@ public static BufferedImage extras;
 public static BufferedImage loading;
 
 
-//Previews	
+//Previews
 /** The preview for the aerial map*/
 	public static BufferedImage aerial;
 	/** The preview for the def map*/
@@ -85,13 +85,13 @@ public static BufferedImage loading;
 	public static BufferedImage finale;
 	/** The preview for an incomplete map*/
 	public static BufferedImage test1;
-	
+
 	/** The image for the portal cursor*/
 	public static BufferedImage cursor;
-	
+
 	/**The image for the icon for the application (at bottom of screen/top left of JFrame if not fullscreen)*/
 	public static BufferedImage icon;
-		
+
 	/**
 	 * Loads all images/textures
 	 */
@@ -115,7 +115,7 @@ public static BufferedImage loading;
 	        winTS = getState("WINNER.jpg");
 
 	       plate = getState("faithplate.png");
-	        
+
 	        def = getBImage("previews/default.png");
 	        first= getBImage("previews/first.png");
 	        blitz = getBImage("previews/blitz.png");
@@ -125,7 +125,7 @@ public static BufferedImage loading;
 	        blueness = getBImage("previews/blueness.png");
 	        intheloop = getBImage("previews/intheloop.png");
 	        finale = getBImage("previews/final.png");
-	        
+
 	        loading = getBImage("stars.png");
 	        settings= getBImage("instructions.png");
 	        extras = getBImage("Credits.png");
@@ -140,7 +140,7 @@ public static BufferedImage loading;
 
     /**
 	 * Gets the BufferedImage from a string
-	 * 
+	 *
 	 * @param s
 	 *            the Filepath of the image
 	 * @return the BufferedImage
@@ -151,7 +151,7 @@ public static BufferedImage loading;
 
     /**
 	 * Gets the BufferedImage from a URL
-	 * 
+	 *
 	 * @param u
 	 *            the Filepath of the image
 	 * @return the BufferedImage
@@ -164,7 +164,7 @@ public static BufferedImage loading;
 		}
     	return null;
     }
-    
+
     /**
      * Gets the texturestate of an image from a string
      * @param s the string filepath
@@ -175,7 +175,7 @@ public static BufferedImage loading;
     }
     /**
 	 * Gets the texturestate of an image from a texture
-	 * 
+	 *
 	 * @param the texture
 	 * @return the texturestate
 	 */
@@ -185,10 +185,10 @@ public static BufferedImage loading;
         ts.setTexture((s));
         return ts;
     }
-    
+
     /**
 	 * Gets a texture from a string
-	 * 
+	 *
 	 * @param s
 	 *            the filepath of a texture
 	 * @return the texture

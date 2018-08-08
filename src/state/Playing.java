@@ -33,19 +33,19 @@ import com.ardor3d.util.ReadOnlyTimer;
  * The Playing state (where user is actually playing game)
  */
 public class Playing implements State{
-	
+
 	/** The list comment sounds to play. */
 	public static volatile LinkedList<String> comments = new LinkedList<String>();
-	
+
 	/** The current comment sound being played. */
 	static volatile SoundPlayer current = null;
-	
+
 	/** The background music */
 	static WavPlayer pla = new WavPlayer("/music/music.wav");
-	
+
 	/** The timer to update sounds*/
 	static Timer tim;
-	
+
 	/**
 	 * if you win and there's another test, do next test, otherwise move to win box, if no next test or winbox exists, exit
 	 */
@@ -59,15 +59,15 @@ public class Playing implements State{
 			}
 		System.exit(0);
 //		System.exit(0);
-//		System.out.println("back2");              
+//		System.out.println("back2");
 //		Main.state.close();
 //		Main.state = Main.menu;
 //		Main.state.init();
 	}
-	
+
 	/**
 	 * Gets the urls contained by the directory path
-	 * 
+	 *
 	 * @param path
 	 *            the path
 	 * @return the subs
@@ -107,7 +107,7 @@ public class Playing implements State{
 
 	/**
 	 * Gets the string files contained by the directory path
-	 * 
+	 *
 	 * @param path
 	 *            the path
 	 * @return the subs string
@@ -168,8 +168,8 @@ public class Playing implements State{
 		}
 		}});
 		}
-	
-	
+
+
 	/**
 	 * renders the portal effect
 	 *
@@ -185,7 +185,7 @@ public class Playing implements State{
              final Vector3 toBlue = Constants.blue.position.subtract(Main._canvas.getCanvasRenderer().getCamera().getLocation(), null);
              Constants.blue.textureRenderer.getCamera().setLocation(Constants.orange.position);
              Vector3 forwards = Constants.orange.toInertia(Constants.blue.fromInertia(toBlue));
-             //Vector3 hi = 
+             //Vector3 hi =
              // TODO fix frustam for realism
              //Constants.blue.textureRenderer.getCamera().setLocation(Constants.orange.position.subtract(forwards, null));
              Constants.blue.textureRenderer.getCamera().setLocation(Constants.orange.position);
@@ -200,7 +200,7 @@ public class Playing implements State{
              Constants.orange.textureRenderer.getCamera().setLocation(Constants.blue.position);
              Constants.orange.textureRenderer.getCamera().lookAt(forwards.addLocal(Constants.blue.position),
                      Constants._worldUp);
-   
+
              Constants.blue.textureRenderer.render(_root, Constants.blue.fakeTex, Renderer.BUFFER_COLOR_AND_DEPTH);
 
              Constants.orange.textureRenderer.render(_root, Constants.orange.fakeTex, Renderer.BUFFER_COLOR_AND_DEPTH);
@@ -215,7 +215,7 @@ public class Playing implements State{
      */
     public void update() {
     	Main._canvas.requestFocusInWindow();
-        
+
         while (!TDCanvas.toadd.isEmpty()) {
             bullets.attachChild(TDCanvas.toadd.poll());
         }
@@ -258,7 +258,7 @@ for (final ListIterator<Spatial> it = chamber.getChildren().listIterator(); it.h
             }
         }
     }
-    
+
     /** The node containing all data */
     public static Node _root = new Node();
 
@@ -276,18 +276,21 @@ public static com.ardor3d.util.Timer _timer;
 
 /** The native frame handler. */
 public static FrameHandler _frameHandler;
-	
+
 	/**
 	 * Initalizes native frames if not started
 	 * resets position/chamber
 	 */
 	public void init(){
 		if(!inited()){
+            System.out.println("old main" + Main.main);
 		Main.main = new TDCanvas();
 		Main.main.init();
-        Main.canvasRenderer = new LwjglCanvasRenderer(Main.main) ;      
+        Main.canvasRenderer = new LwjglCanvasRenderer(Main.main) ;
        try {
-			Main._canvas = new LwjglAwtCanvas();
+            System.out.println("making playing canvas");
+			Main._canvas = new LwjglAwtCanvas(Constants.settings, Main.canvasRenderer);
+            System.out.println("done making playing canvas");
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 		}
@@ -306,20 +309,21 @@ public static FrameHandler _frameHandler;
        }
        tim.start();
 		pla.loop();
-		
+
 	}
         _root.attachChild(portals);
         _root.attachChild(bullets);
 		_root.attachChild(chamber = new TestChamber(cur));
-        Main._canvas.getCanvasRenderer().getCamera().setLocation(new Vector3(0, Constants.height + 15.1, 0));
-        Main._canvas.getCanvasRenderer().getCamera().setDirection(new Vector3(0, 0, -1));
-        Main._canvas.getCanvasRenderer().getCamera().setLeft(new Vector3(-1, 0, 0));
-        Main._canvas.getCanvasRenderer().getCamera().setUp(new Vector3(0, 1, 0));
+        com.ardor3d.renderer.Camera cam = Main._canvas.getCanvasRenderer().getCamera();
+        cam.setLocation(new Vector3(0, Constants.height + 15.1, 0));
+        cam.setDirection(new Vector3(0, 0, -1));
+        cam.setLeft(new Vector3(-1, 0, 0));
+        cam.setUp(new Vector3(0, 1, 0));
         Constants.inertia.multiplyLocal(0);
         inited = true;
         WavPlayer.door.play();
 	}
-	
+
 	/**
 	 * Resets the user
 	 */
@@ -333,13 +337,13 @@ public static FrameHandler _frameHandler;
         Main._canvas.getCanvasRenderer().getCamera().setDirection(new Vector3(0, 0, -1));
         Main._canvas.getCanvasRenderer().getCamera().setLeft(new Vector3(-1, 0, 0));
         Main._canvas.getCanvasRenderer().getCamera().setUp(new Vector3(0, 1, 0));
-       
+
 	}
-	
+
 	public boolean inited(){
 		return inited;
 	}
-	
+
 	/**
 	 * Destroys the current chamber
 	 */
@@ -356,7 +360,7 @@ public static FrameHandler _frameHandler;
 		Main._canvas.getCanvasRenderer().getCamera().setDirection(new Vector3(0, 0, -1));
         //TDCanvas.center.detachChild(_root);
 	}
-	
+
 	/** The current chamber. */
 	public static TestChamber chamber;
 
@@ -366,7 +370,7 @@ public static FrameHandler _frameHandler;
 
 	/** The Constant bullets. */
 	public final static Node bullets = new Node();
-	
+
 	/** The Constant portals. */
 	public final static Node portals = new Node();
 

@@ -4,13 +4,15 @@ package surface;
 import com.ardor3d.math.type.ReadOnlyVector3;
 
 import backbone.Imaging;
+import file.Writable;
+import file.WritableUtils;
 /**
  * The default surface that kills the player, it also does not allow portals to be created on it
  */
 public class PKiller extends Surface{
    /**
 	 * Instantiates a new pkiller.
-	 * 
+	 *
 	 * @param w
 	 *            the width
 	 * @param h
@@ -28,6 +30,6 @@ public class PKiller extends Surface{
      * Returns the writable string representation of this pkiller
 	 */
 	public String toWritableString() {
-		return "{ PKiller "+width+" "+height+" "+getPosition().toWritableString()+" "+toString(getOrientation())+" }";
+		return "{ PKiller "+width+" "+height+" "+WritableUtils.toWritableString(getPosition())+" "+toString(getOrientation())+" }";
 	}
 }

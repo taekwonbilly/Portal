@@ -15,6 +15,7 @@ import portal.Bullet;
 import portal.Portal;
 
 import com.ardor3d.math.Vector3;
+import com.ardor3d.math.type.ReadOnlyVector3;
 import com.ardor3d.scenegraph.Spatial;
 
 import backbone.TestChamber;
@@ -24,10 +25,10 @@ import backbone.TestChamber;
  * See Mapfiles.txt for more information
  */
 public class MapReader {
-	
+
 	/**
 	 * Sets the up the chamber from a bufferedreader
-	 * 
+	 *
 	 * @param cham
 	 *            the chamber to set up
 	 * @param f
@@ -47,10 +48,10 @@ public class MapReader {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Gets the orientation from a number index
-	 * 
+	 *
 	 * @param a
 	 *            the index
 	 * @return the orientation
@@ -66,10 +67,10 @@ public class MapReader {
 		}
 		throw new RuntimeException("Illegal Orientation");
 	}
-	
+
 	/**
 	 * Sets the up the chamber from a string representing an article
-	 * 
+	 *
 	 * @param cham
 	 *            the chamber to set up
 	 * @param s
@@ -80,21 +81,21 @@ public class MapReader {
 			return;
 		setUp(cham, new BufferedReader(new InputStreamReader(MapReader.class.getResourceAsStream(s))));
 	}
-	
+
 	/**
 	 * The Node class for handling parsing recursive list system
 	 */
 	public static class Node{
-		
+
 		/** The data in this node self. */
 		public String self;
-		
+
 		/** The node after. */
 		public Node after = null;
-		
+
 		/**
 		 * Instantiates a new node.
-		 * 
+		 *
 		 * @param a
 		 *            the string representation of self
 		 * @param b
@@ -105,7 +106,7 @@ public class MapReader {
 			b.after = this;
 			self = a;
 		}
-		
+
 		/**
 		 * The toString(), (for debugging)
 		 */
@@ -113,10 +114,10 @@ public class MapReader {
 			return self+", "+after;
 		}
 	}
-	
+
 	/**
 	 * Reads the next class from the node
-	 * 
+	 *
 	 * @param n
 	 *            the node
 	 * @return the object
@@ -236,10 +237,10 @@ public class MapReader {
 //		}
 		throw new RuntimeException("Failed to parse: "+n.self);
 	}
-	
+
 	/**
 	 * Turns an object to a double, and fixes all cast issues
-	 * 
+	 *
 	 * @param o
 	 *            the object
 	 * @return the double
@@ -249,16 +250,16 @@ public class MapReader {
 			return ((Integer)o).doubleValue();
 		return (Double)o;
 	}
-	
+
 	/**
 	 * Reads the next primitive
-	 * 
+	 *
 	 * @param n
 	 *            the node
 	 * @return the primitive
 	 */
 	public static Object readD(Node n){
-		
+
 		try{
 			int d = Integer.parseInt(n.self);
 			if(n.after!=null)
@@ -314,10 +315,10 @@ public class MapReader {
 		}
 		throw new RuntimeException("Failed to parse: "+n.self);
 	}
-	
+
 	/**
 	 * Adds the string representation of a spatial to the chamber
-	 * 
+	 *
 	 * @param cham
 	 *            the chamber
 	 * @param s
@@ -338,10 +339,10 @@ public class MapReader {
 		else
 			cham.add(t);
 	}
-	
+
 	/**
 	 * Writes a chamber to file
-	 * 
+	 *
 	 * @param testChamber
 	 *            the test chamber to write
 	 * @param string
@@ -355,10 +356,10 @@ public class MapReader {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Writes a chamber to file
-	 * 
+	 *
 	 * @param testChamber
 	 *            the test chamber to write
 	 * @param out
@@ -366,17 +367,17 @@ public class MapReader {
 	 */
 	public static void write(TestChamber testChamber, PrintWriter out) {
 		for(Spatial t:testChamber.getChildren()){
-			if(t instanceof Savable){
-				out.println(((Savable)t).toWritableString());
+			if(t instanceof Writable){
+				out.println(((Writable)t).toWritableString());
 			}
 		}
 		out.close();
 	}
-	
+
 	//TODO add functionality to import valve map files, similar to XML format
 	/**
 	 * Import xml.
-	 * 
+	 *
 	 * @param out
 	 *            the out
 	 * @param in
@@ -398,7 +399,7 @@ public class MapReader {
 			if(s.equals("side")){
 				in.readLine(); // {
 				s = in.readLine(); //id
-				
+
 			p = p.substring(p.indexOf('\"')+1);
 			p = p.substring(p.indexOf('\"')+1);
 			p = p.substring(p.indexOf('\"')+1);
@@ -420,7 +421,7 @@ public class MapReader {
 
 			String smoothing_groups = in.readLine();
 			String materal = in.readLine();
-			
+
 
 			String u_axis = in.readLine();
 			String v_axis = in.readLine();

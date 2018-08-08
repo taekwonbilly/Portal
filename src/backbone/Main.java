@@ -67,7 +67,7 @@ public class Main {
          
          canvasRenderer = new LwjglCanvasRenderer(main) ;      
         try {
-			_canvas = new LwjglAwtCanvas();
+			_canvas = new LwjglAwtCanvas(Constants.settings, canvasRenderer);
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 		}

@@ -4,13 +4,16 @@ package surface;
 import com.ardor3d.math.type.ReadOnlyVector3;
 
 import backbone.Imaging;
+
+import file.Writable;
+import file.WritableUtils;
 /**
  * The default surface that portals cannot be created onto
  */
 public class Killer extends Surface{
    /**
 	 * Instantiates a new killer.
-	 * 
+	 *
 	 * @param w
 	 *            the width
 	 * @param h
@@ -28,6 +31,6 @@ public class Killer extends Surface{
      * Returns the writable string representation of this killer
 	 */
 	public String toWritableString() {
-		return "{ Killer "+width+" "+height+" "+getPosition().toWritableString()+" "+toString(getOrientation())+" }";
+		return "{ Killer "+width+" "+height+" "+WritableUtils.toWritableString(getPosition())+" "+toString(getOrientation())+" }";
 	}
 }

@@ -7,6 +7,8 @@ import state.*;
 import surface.Platform;
 import math.RayOps;
 import backbone.*;
+import file.Writable;
+import file.WritableUtils;
 
 import com.ardor3d.math.Ray3;
 import com.ardor3d.math.Vector3;
@@ -14,19 +16,18 @@ import com.ardor3d.math.type.ReadOnlyVector3;
 import com.ardor3d.scenegraph.Mesh;
 import com.ardor3d.scenegraph.Spatial;
 import com.ardor3d.scenegraph.shape.Sphere;
-import com.ardor3d.util.export.Savable;
 
 /**
  * The Class made to hold inside of it the ability to create a portal
  */
-public class Bullet extends Sphere implements Savable{
-    
+public class Bullet extends Sphere implements Writable{
+
     /** The position. */
     public Vector3 position;
-    
+
     /** The motion. */
     public Vector3 motion;
-    
+
     /** The radius. */
     public double radius;
 
@@ -35,10 +36,10 @@ public class Bullet extends Sphere implements Savable{
 
     /** The type of bullet (creates portal/other) */
     public boolean portaled;
-    
+
     /**
 	 * Instantiates a new bullet.
-	 * 
+	 *
 	 * @param r
 	 *            the radius
 	 * @param pos
@@ -47,10 +48,10 @@ public class Bullet extends Sphere implements Savable{
     public Bullet(final double r, final ReadOnlyVector3 pos) {
     	this(r, pos, new Vector3(Main._canvas.getCanvasRenderer().getCamera().getDirection().multiply(10, null)), false, true);
     }
-    
+
     /**
 	 * Instantiates a new bullet.
-	 * 
+	 *
 	 * @param r
 	 *            the radius
 	 * @param pos
@@ -71,19 +72,19 @@ public class Bullet extends Sphere implements Savable{
    //     setRenderState(Imaging.bullet);
         portaled = po;
     }
-    
+
     /**
 	 * To writable string.
-	 * 
+	 *
 	 * @return the string
 	 */
     public String toWritableString(){
-    	return "{ Bullet "+radius+" "+position.toWritableString()+" "+motion.toWritableString()+" "+type+" "+portaled+" }";
+    	return "{ Bullet "+radius+" "+WritableUtils.toWritableString(position)+" "+WritableUtils.toWritableString(motion)+" "+type+" "+portaled+" }";
     }
-    
+
     /**
 	 * Instantiates a new bullet.
-	 * 
+	 *
 	 * @param r
 	 *            the radius
 	 * @param type
@@ -101,10 +102,10 @@ public class Bullet extends Sphere implements Savable{
         	setRenderState((Imaging.orange));
         }
     }
-    
+
     /**
 	 * Instantiates a new bullet.
-	 * 
+	 *
 	 * @param type
 	 *            the type of bullet
 	 */
@@ -120,13 +121,13 @@ public class Bullet extends Sphere implements Savable{
         	setRenderState((Imaging.orange));
         }
     }
-    
+
     /** The boolean denoting death of the bullet. */
     public boolean dead = false;
-    
+
     /**
 	 * Moves the bullet, kills it if neccessary, or returns the portalable surface if it will create a portal
-	 * 
+	 *
 	 * @return the portalable
 	 */
     public Portalable move() {

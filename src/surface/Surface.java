@@ -2,24 +2,25 @@ package surface;
 
 
 	import com.ardor3d.math.Matrix3;
-import com.ardor3d.math.type.ReadOnlyVector3;
+    import com.ardor3d.math.type.ReadOnlyVector3;
 	import com.ardor3d.scenegraph.shape.Quad;
 
-import file.Savable;
-	public abstract class Surface extends Quad implements Savable{
-	    
+	import file.Writable;
+
+	public abstract class Surface extends Quad implements Writable {
+
 	    /** The width of the surface (x direction for floor/forward, z direction for right)*/
 	    public double width;
 
 	    /** The height of the surface (y direction for forwards/right, z direction for floor)*/
 	    public double height;
-	    
+
 	    /** The orientation */
 	    public Orientation orientation;
 
 	    /**
 		 * Instantiates a new piece.
-		 * 
+		 *
 		 * @param w
 		 *            the width
 		 * @param h
