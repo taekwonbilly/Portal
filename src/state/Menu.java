@@ -43,7 +43,8 @@ public class Menu extends JComponent implements State{
 	
 	public void init() {
 		if(!sp.isPlaying())
-		sp.play();
+			sp.play();
+		
 		Main.mainPanel.add(this, BorderLayout.CENTER);
 		requestFocusInWindow();
 		inited = true;

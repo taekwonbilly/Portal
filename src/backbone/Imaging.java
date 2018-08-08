@@ -1,5 +1,7 @@
 package backbone;
 
+import java.awt.Image;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -130,7 +132,7 @@ public static BufferedImage loading;
 	        settings= getBImage("instructions.png");
 	        extras = getBImage("Credits.png");
 	        test1 = getBImage("test1.png");
-	        cursor = getBImage("mouse.png");
+	        cursor = resize(getBImage("mouse.png"), 100, 100);
 	        menuItems[0] = getBImage("0.png");
 	        menuItems[1] = getBImage("1.png");
 	        menuItems[2] = getBImage("2.png");
@@ -165,6 +167,17 @@ public static BufferedImage loading;
     	return null;
     }
 
+    public static BufferedImage resize(BufferedImage img, int newW, int newH) { 
+	    Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
+	    BufferedImage dimg = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_ARGB);
+
+	    Graphics2D g2d = dimg.createGraphics();
+	    g2d.drawImage(tmp, 0, 0, null);
+	    g2d.dispose();
+
+	    return dimg;
+	}  
+
     /**
      * Gets the texturestate of an image from a string
      * @param s the string filepath
@@ -197,6 +210,12 @@ public static BufferedImage loading;
     	if(!textures.containsKey(s))
     	{
     		Texture t = TextureManager.load(s, Texture.MinificationFilter.Trilinear, true);
+
+    		if (t == TextureState.getDefaultTexture()) {
+    			System.out.println("couldn't load texture " + s);
+    			System.exit(1);
+    		}
+
     		textures.put(s, t);
     		return t;
     	}

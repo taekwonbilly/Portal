@@ -64,8 +64,6 @@ public class TDCanvas implements Runnable, Updater, Scene{
         center.setRenderState(_lightState);
 
         center.getSceneHints().setRenderBucketType(RenderBucketType.Opaque);
-
-
     }
     
     /** The main node containing everything to be displayed as its child, or recursive child */

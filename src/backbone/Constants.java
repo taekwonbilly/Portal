@@ -52,10 +52,10 @@ public class Constants {
       public static final int windowY = screenSize.height;
 
       /** The Constant for a default screen width if not fullscreen*/
-      public static final int defaultX = 1080;
+      public static final int defaultX = 1920;
 
       /** The Constant for a default screen height if not fullscreen*/
-      public static final int defaultY = 720;
+      public static final int defaultY = 1080;
 
       /** The Constant designating the actual width of the screen */
       public static final int drawX;

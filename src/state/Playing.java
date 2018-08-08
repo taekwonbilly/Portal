@@ -51,18 +51,13 @@ public class Playing implements State{
 	 */
 	public static void win(){
 		for(int i = 0; i<Loader.levels.length-1; i++)
-			if(Playing.cur.equals(Loader.levels[i])){
-		Main.playing.close();
-		Playing.cur = Loader.levels[i+1];
-		Main.playing.init();
-		return;
+			if(Playing.cur.equals(Loader.levels[i])) {
+				Main.playing.close();
+				Playing.cur = Loader.levels[i+1];
+				Main.playing.init();
+				return;
 			}
 		System.exit(0);
-//		System.exit(0);
-//		System.out.println("back2");
-//		Main.state.close();
-//		Main.state = Main.menu;
-//		Main.state.init();
 	}
 
 	/**
@@ -169,13 +164,27 @@ public class Playing implements State{
 		}});
 		}
 
+	static boolean did_state_setup = false;
+	static boolean try_state_setup() {
+		if (did_state_setup) return true;
+
+    	if(Main._canvas.getCanvasRenderer().getCamera() == null)
+    		return false;
+
+   		System.out.println("setting up state");
+   		did_state_setup = true;
+   		reset_state();
+   		return true;
+	}
 
 	/**
 	 * renders the portal effect
 	 *
 	 */
 	public void render(Renderer renderer){
-		 if (Constants.blue != null && Constants.orange != null) {
+		try_state_setup();
+
+    	if (Constants.blue != null && Constants.orange != null) {
              if (!Constants.blue.inited) {
                  Constants.blue.initRtt(renderer);
              }
@@ -214,6 +223,11 @@ public class Playing implements State{
      * update anything else that needs
      */
     public void update() {
+
+    	if(!try_state_setup()) {
+    		return;
+    	}
+
     	Main._canvas.requestFocusInWindow();
 
         while (!TDCanvas.toadd.isEmpty()) {
@@ -230,7 +244,7 @@ public class Playing implements State{
             Constants.inertia.setY(Constants.TERMINAL);
         }
         Constants.inertia = Main._controlHandle.move(Main._canvas.getCanvasRenderer().getCamera(), Constants.inertia, true);
-for (final ListIterator<Spatial> it = chamber.getChildren().listIterator(); it.hasNext();) {
+		for (final ListIterator<Spatial> it = chamber.getChildren().listIterator(); it.hasNext();) {
             final Spatial r = it.next();
             if(r instanceof Platform){
             	((Platform)r).update();
@@ -284,44 +298,58 @@ public static FrameHandler _frameHandler;
 	public void init(){
 		if(!inited()){
             System.out.println("old main" + Main.main);
-		Main.main = new TDCanvas();
+		//Main.main = new TDCanvas();
 		Main.main.init();
-        Main.canvasRenderer = new LwjglCanvasRenderer(Main.main) ;
+        //Main.canvasRenderer = new LwjglCanvasRenderer(Main.main) ;
        try {
             System.out.println("making playing canvas");
-			Main._canvas = new LwjglAwtCanvas(Constants.settings, Main.canvasRenderer);
+			//Main._canvas = new LwjglAwtCanvas(Constants.settings, Main.canvasRenderer);
             System.out.println("done making playing canvas");
-		} catch (LWJGLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
        _timer = new com.ardor3d.util.Timer();
        _frameHandler = new FrameHandler(_timer);
         _frameHandler.addUpdater(Main.main);
         _frameHandler.addCanvas(Main._canvas);
         _frameHandler.init();
+
 		Main.frame.add(Main._canvas);
+		//Main.frame.setContentPane(Main._canvas);
+
 		Main._canvas.requestFocusInWindow();
-       TDCanvas.center.attachChild(_root);
-       if(comments.size()>0){
+        TDCanvas.center.attachChild(_root);
+        if(comments.size()>0){
 			String s = comments.pollFirst();
 			current = new SoundPlayer(s);
 			current.play();
-       }
-       tim.start();
-		pla.loop();
+        }
 
+       tim.start();
+	   pla.loop();
 	}
+
         _root.attachChild(portals);
         _root.attachChild(bullets);
 		_root.attachChild(chamber = new TestChamber(cur));
+
+        inited = true;
+        WavPlayer.door.play();
+        did_state_setup = false;
+	}
+
+	public static void reset_state() {
+		portals.detachAllChildren();
+		bullets.detachAllChildren();
+		Constants.blue = null;
+		Constants.orange = null;
+        Constants.inertia.multiplyLocal(0);
         com.ardor3d.renderer.Camera cam = Main._canvas.getCanvasRenderer().getCamera();
         cam.setLocation(new Vector3(0, Constants.height + 15.1, 0));
         cam.setDirection(new Vector3(0, 0, -1));
         cam.setLeft(new Vector3(-1, 0, 0));
         cam.setUp(new Vector3(0, 1, 0));
-        Constants.inertia.multiplyLocal(0);
-        inited = true;
-        WavPlayer.door.play();
 	}
 
 	/**
@@ -329,15 +357,7 @@ public static FrameHandler _frameHandler;
 	 */
 	public static void reset(){
 		WavPlayer.burn.play();
-		portals.detachAllChildren();
-		bullets.detachAllChildren();
-		Constants.blue = null;
-		Constants.orange = null;
-		Main._canvas.getCanvasRenderer().getCamera().setLocation(new Vector3(0, Constants.height + 15.1, 0));
-        Main._canvas.getCanvasRenderer().getCamera().setDirection(new Vector3(0, 0, -1));
-        Main._canvas.getCanvasRenderer().getCamera().setLeft(new Vector3(-1, 0, 0));
-        Main._canvas.getCanvasRenderer().getCamera().setUp(new Vector3(0, 1, 0));
-
+		reset_state();
 	}
 
 	public boolean inited(){

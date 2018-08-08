@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -27,80 +28,19 @@ import state.*;
 public class Main {
     
     /** The frame. */
-    public static JFrame frame = new JFrame("70Three Laboratories");
+    public static JFrame frame;
     
     /** The main panel. */
-    public static JPanel mainPanel = new JPanel();
-    
-    /**Initializes the frame*/
-    static{
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       frame.setContentPane(mainPanel);
-        mainPanel.setFocusable(true);
-        mainPanel.setLayout(new BorderLayout());
-    	if(Constants.fullscreen){
-        	frame.setSize(Constants.windowX, Constants.windowY);
-    		frame.setUndecorated(true);
-            mainPanel.setPreferredSize(new Dimension(Constants.windowX, Constants.windowY));
-    	}
-    	else{
-        	frame.setSize(Constants.drawX, Constants.drawY);
-            mainPanel.setPreferredSize(new Dimension(Constants.drawX, Constants.drawY));
-    	}
-    }
-   /** The canvas renderer. */
-  public static LwjglCanvasRenderer canvasRenderer;
+    public static JPanel mainPanel;
+
+    /** The canvas renderer. */
+    public static LwjglCanvasRenderer canvasRenderer;
     
     /** The main native scene */
     public static TDCanvas main;
-    
-    /**
-	 * The main method.
-	 * 
-	 * @param args
-	 *            the arguments
-	 */
-    public static void main(final String[] args) {
-    	
-         main = new TDCanvas();
-         Main._controlHandle = new Controls();
-         
-         canvasRenderer = new LwjglCanvasRenderer(main) ;      
-        try {
-			_canvas = new LwjglAwtCanvas(Constants.settings, canvasRenderer);
-		} catch (LWJGLException e) {
-			e.printStackTrace();
-		}
-        Imaging.load();
-        frame.setIconImage(Imaging.icon);
-        Toolkit toolkit = Toolkit.getDefaultToolkit();
-        Image cursorImage = Imaging.cursor;
-        Point cursorHotSpot = new Point(16,16);
-        Cursor customCursor = toolkit.createCustomCursor(cursorImage, cursorHotSpot, "Cursor");
-        frame.setCursor(customCursor);
-        main.init();
-      
-       TextureRendererFactory.INSTANCE.setProvider(new LwjglTextureRendererProvider());
-
-        frame.setVisible(true);
-        if(state!=null)
-        state.init();
-        new javax.swing.Timer(10, new ActionListener() {
-            public void actionPerformed(final ActionEvent e) {
-            	//constantly repaint/update the frame and all components
-        		Main.frame.repaint();
-        		Main.mainPanel.repaint();
-        		//update to only include any additions, if necessary
-        		Main.frame.validate();
-            	if(state!=null && state.inited())
-                state.update();
-            }
-        }).start();
-        new Thread(main).start();
-    }
    
-   /** The native canvas. */
-   public static LwjglAwtCanvas _canvas;
+    /** The native canvas. */
+    public static LwjglAwtCanvas _canvas;
 
     /** The controls (input/movement) */
     public static Controls _controlHandle;
@@ -122,8 +62,74 @@ public class Main {
     
     /** The current menu. */
     public static volatile State state = menu;
+
     /**
      * Boolean denoting wheter the program has ended or not
      */
     public static volatile boolean _exit = false;
+
+    /**
+     * The main method.
+     * 
+     * @param args
+     *            the arguments
+     */
+    public static void main(final String[] args) throws LWJGLException {
+
+        /**Initializes the frame*/
+        frame = new JFrame("70Three Laboratories");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainPanel = new JPanel();
+        frame.setContentPane(mainPanel);
+        mainPanel.setFocusable(true);
+        mainPanel.setLayout(new BorderLayout());
+        frame.setSize(Constants.drawX, Constants.drawY);
+
+        if(Constants.fullscreen){
+            frame.setUndecorated(true);
+        }
+        mainPanel.setPreferredSize(new Dimension(Constants.drawX, Constants.drawY));
+
+        Imaging.load();
+        frame.setIconImage(Imaging.icon);
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        BufferedImage cursorImage = Imaging.cursor;
+        Point cursorHotSpot = new Point(cursorImage.getHeight()/2,cursorImage.getWidth()/2);
+        Cursor customCursor = toolkit.createCustomCursor(cursorImage, cursorHotSpot, "Cursor");
+        frame.setCursor(customCursor);
+        frame.setVisible(true);
+
+        main = new TDCanvas();
+        _controlHandle = new Controls();
+         
+        canvasRenderer = new LwjglCanvasRenderer(main) ;      
+        _canvas = new LwjglAwtCanvas(Constants.settings, canvasRenderer);
+
+        _canvas.addKeyListener(_controlHandle);
+        _canvas.addMouseListener(_controlHandle);
+        _canvas.addMouseMotionListener(_controlHandle);
+
+
+        main.init();
+      
+        TextureRendererFactory.INSTANCE.setProvider(new LwjglTextureRendererProvider());
+
+        if(state!=null)
+        state.init();
+        new javax.swing.Timer(10, new ActionListener() {
+            public void actionPerformed(final ActionEvent e) {
+                //constantly repaint/update the frame and all components
+                Main.frame.repaint();
+                Main.mainPanel.repaint();
+                //update to only include any additions, if necessary
+                Main.frame.validate();
+                if(state!=null && state.inited()) {
+                    Main.frame.repaint();
+                    Main.mainPanel.repaint();
+                    state.update();
+                }
+            }
+        }).start();
+        new Thread(main).start();
+    }
 }

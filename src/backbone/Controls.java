@@ -125,6 +125,7 @@ public class Controls implements KeyListener, MouseListener, MouseMotionListener
 	 * 			  the modified vector to move (0 if hits wall, refleted if bounced, etc)
 	 */
     public Vector3 move(final Camera camera, final Vector3 orig, final boolean portaled) {
+        assert(camera != null);
         final Ray3 ray = new Ray3(camera.getLocation(), orig);
         if (portaled && Constants.blue != null && Constants.orange != null) {
             if (RayOps.intersects(Constants.blue.disk, ray, true)!=Double.POSITIVE_INFINITY) {
